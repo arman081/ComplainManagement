@@ -52,9 +52,11 @@ namespace ComplainManagement.API
                 cfg.AssumeDefaultVersionWhenUnspecified = true;
                 cfg.ReportApiVersions = true;
             });
-            services.AddDbContext<ComplainDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ComplainManagementUser, IdentityRole>()
-                    .AddEntityFrameworkStores<ComplainDbContext>();
+            services.AddDbContext<ComplainDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ComplainConnectionString")));
+            //services.AddIdentity<ComplainManagementUser, IdentityRole>()
+            //        .AddEntityFrameworkStores<ComplainDbContext>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddCors(cfg =>
             {

@@ -6,8 +6,10 @@ using System.Text;
 
 namespace ComplainManagement.Domain.DomainEntities
 {
-    public class ComplainManagementUser : IdentityUser
+    public class ComplainManagementUser 
     {
+        [Key]
+        public int UserId { get; set; }
         [Required]
         [MaxLength(200)]
         public string FirstName { get; set; }
@@ -17,6 +19,12 @@ namespace ComplainManagement.Domain.DomainEntities
         [Required]
         [MaxLength(200)]
         public string UserEmail { get; set; }
+        [Required]
+        [MaxLength(200)]
+        public string UserName { get; set; }
+        [Required]
+        [MaxLength(200)]
+        public string Password { get; set; }
 
         [Required]
         [MaxLength(20)]

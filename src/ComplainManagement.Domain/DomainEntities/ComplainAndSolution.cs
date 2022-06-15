@@ -33,7 +33,8 @@ namespace ComplainManagement.Domain.DomainEntities
 
 
         public virtual ComplainType ComplainType { get; set; }
-        public int ComplainTypeRef { get; set; }
+        
+        public int ComplainTypeId { get; set; }
 
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedOn { get; set; }

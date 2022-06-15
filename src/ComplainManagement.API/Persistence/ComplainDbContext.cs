@@ -9,9 +9,10 @@ namespace ComplainManagement.API.Persistence
 {
     public class ComplainDbContext : DbContext
     {
-        public ComplainDbContext()
-        {
 
+        public ComplainDbContext(DbContextOptions<ComplainDbContext> options)
+        : base(options)
+        {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -21,13 +22,16 @@ namespace ComplainManagement.API.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ComplainManagementUser>()
-        .HasIndex(u => u.Email)
+        .HasIndex(u => u.UserEmail)
         .IsUnique();
 
             modelBuilder.Entity<ComplainManagementUser>()
         .HasIndex(u => u.UserName)
         .IsUnique();
+
+            modelBuilder.Seed();
         }
+
         //entities
         public DbSet<ComplainManagementUser> ComplainManagementUsers { get; set; }
         public DbSet<ComplainType> ComplainTypes { get; set; }
