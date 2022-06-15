@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ComplainManagement.MVC.Models;
 using ComplainManagement.MVC.Persistance;
+using Microsoft.AspNetCore.Http;
 
 namespace ComplainManagement.MVC.Controllers
 {
@@ -22,6 +23,11 @@ namespace ComplainManagement.MVC.Controllers
         // GET: ComplainAndSolutions
         public async Task<IActionResult> Index()
         {
+            var UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var applicationDbContext = _context.ComplainAndSolutions.Where(c=> c.Solution != null).Include(c => c.ComplainType);
             return View(await applicationDbContext.ToListAsync());
         }

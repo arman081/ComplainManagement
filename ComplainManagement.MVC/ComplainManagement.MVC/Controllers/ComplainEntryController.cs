@@ -28,6 +28,7 @@ namespace ComplainManagement.MVC.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
+            ViewData["ComplainTypeId"] = new SelectList(_context.ComplainTypes, "ComplainTypeId", "ComplainTypeName");
             var applicationDbContext = _context.ComplainAndSolutions.Include(c => c.ComplainType);
             return View(await applicationDbContext.ToListAsync());
         }

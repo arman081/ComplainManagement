@@ -5,6 +5,14 @@
 }
 
 <h1>Complain List</h1>
+<div>
+    <div class="form-group row">
+
+        <label class="control-label">Complain Type</label>
+        <select id="ComplainFilter" class="form-control" asp-items="ViewBag.ComplainTypeId"></select>
+        <a class="btn btn-info" id="btnFilter">Show</a>
+    </div>
+</div>
 
 <table class="table">
     <thead>

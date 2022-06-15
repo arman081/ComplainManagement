@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ComplainManagement.MVC.Models;
 using ComplainManagement.MVC.Persistance;
+using Microsoft.AspNetCore.Http;
 
 namespace ComplainManagement.MVC.Controllers
 {
@@ -98,6 +99,11 @@ namespace ComplainManagement.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ComplainId,ComplainNo,CustomerName,CustomerMobile,ComplainDetails,ComplainStatus,Solution,ComplainDate,ComplainTypeId")] ComplainAndSolution complainAndSolution)
         {
+            var UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id != complainAndSolution.ComplainId)
             {
                 return NotFound();
