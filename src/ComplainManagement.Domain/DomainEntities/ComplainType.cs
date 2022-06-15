@@ -18,5 +18,7 @@ namespace ComplainManagement.Domain.DomainEntities
         public bool IsActive { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedOn { get; set; }
+
+        public ComplainAndSolution ComplainAndSolution { get; set; }
     }
 }

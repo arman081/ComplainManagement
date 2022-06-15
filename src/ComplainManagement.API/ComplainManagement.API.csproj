@@ -17,4 +17,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ComplainManagement.Domain\ComplainManagement.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

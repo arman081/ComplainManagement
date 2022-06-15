@@ -6,3 +6,6 @@ services:
     build:
       context: .
       dockerfile: ComplainManagement.API/Dockerfile
+
+  complaindb:
+    image: mcr.microsoft.com/mssql/server:2017-latest

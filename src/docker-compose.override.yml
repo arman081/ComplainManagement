@@ -1,8 +1,22 @@
 version: '3.4'
 
 services:
-  complainmanagement.api:
+  complaindb:
+    container_name: complaindb
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+        SA_PASSWORD: "ArM@12345678"
+        ACCEPT_EULA: "Y"
+    restart: always
     ports:
-      - "80"
+        - "1433:1433"
+
+
+  complainmanagement.api:
+    container_name: complainmanagement.api
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - "ConnectionStrings:ComplainConnectionString=Server=complaindb;Database=ComplainManagementDb;User Id=sa;Password=ArM@12345678"
+    depends_on:
+        - complaindb
+    ports:
+        - "8002:80"
