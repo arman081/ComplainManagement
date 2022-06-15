@@ -96,7 +96,7 @@ namespace ComplainManagement.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ComplainId,CustomerName,CustomerMobile,ComplainDetails,ComplainStatus,Solution,ComplainTypeId")] ComplainAndSolution complainAndSolution)
+        public async Task<IActionResult> Edit(int id, [Bind("ComplainId,ComplainNo,CustomerName,CustomerMobile,ComplainDetails,ComplainStatus,Solution,ComplainDate,ComplainTypeId")] ComplainAndSolution complainAndSolution)
         {
             if (id != complainAndSolution.ComplainId)
             {
@@ -107,6 +107,7 @@ namespace ComplainManagement.MVC.Controllers
             {
                 try
                 {
+
                     complainAndSolution.ComplainStatus = "Resolved";
                     complainAndSolution.SolutionDate = DateTime.Now;
                     _context.Update(complainAndSolution);

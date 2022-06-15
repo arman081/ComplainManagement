@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ComplainManagement.MVC.Models;
 using ComplainManagement.MVC.Persistance;
+using Microsoft.AspNetCore.Http;
 
 namespace ComplainManagement.MVC.Controllers
 {
@@ -58,9 +59,20 @@ namespace ComplainManagement.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(user);
+                    await _context.SaveChangesAsync();
+                    //return RedirectToAction(nameof(Index));
+                    HttpContext.Session.SetString("UserName", user.UserName);
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (Exception)
+                {
+
+                    return View(user);
+                }
+
             }
             return View(user);
         }

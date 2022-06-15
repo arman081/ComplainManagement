@@ -22,7 +22,7 @@ namespace ComplainManagement.MVC.Controllers
         // GET: ComplainAndSolutions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ComplainAndSolutions.Include(c => c.ComplainType);
+            var applicationDbContext = _context.ComplainAndSolutions.Where(c=> c.Solution != null).Include(c => c.ComplainType);
             return View(await applicationDbContext.ToListAsync());
         }
 

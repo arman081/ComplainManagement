@@ -4,14 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Resolved Complain Report</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComplainNo)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CustomerName)
             </th>
@@ -19,17 +20,21 @@
                 @Html.DisplayNameFor(model => model.CustomerMobile)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ComplainDetails)
+                @Html.DisplayNameFor(model => model.ComplainType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ComplainStatus)
+                @Html.DisplayNameFor(model => model.ComplainDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolutionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComplainDetails)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Solution)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComplainType)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -37,28 +42,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ComplainNo)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CustomerName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerMobile)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ComplainDetails)
+                @Html.DisplayFor(modelItem => item.ComplainType.ComplainTypeName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ComplainStatus)
+                @Html.DisplayFor(modelItem => item.ComplainDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SolutionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComplainDetails)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Solution)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ComplainType.ComplainTypeName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ComplainId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ComplainId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ComplainId">Delete</a>
-            </td>
+
         </tr>
 }
     </tbody>

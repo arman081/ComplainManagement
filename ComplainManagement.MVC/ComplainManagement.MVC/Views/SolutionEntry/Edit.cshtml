@@ -14,18 +14,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ComplainId" />
             <div class="form-group">
+                <label asp-for="ComplainNo" class="control-label"></label>
+                <input asp-for="ComplainNo" class="form-control" readonly />
+                <span asp-validation-for="ComplainNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CustomerName" class="control-label"></label>
-                <input asp-for="CustomerName" class="form-control" readonly/>
+                <input asp-for="CustomerName" class="form-control" readonly />
                 <span asp-validation-for="CustomerName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerMobile" class="control-label"></label>
-                <input asp-for="CustomerMobile" class="form-control" readonly/>
+                <input asp-for="CustomerMobile" class="form-control" readonly />
                 <span asp-validation-for="CustomerMobile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ComplainDetails" class="control-label"></label>
-                <input asp-for="ComplainDetails" class="form-control" readonly/>
+                <input asp-for="ComplainDetails" class="form-control" readonly />
                 <span asp-validation-for="ComplainDetails" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,10 +40,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="ComplainTypeId" class="control-label"></label>
-                <select asp-for="ComplainTypeId" class="form-control" asp-items="ViewBag.ComplainTypeId" ></select>
+                <select asp-for="ComplainTypeId" class="form-control" asp-items="ViewBag.ComplainTypeId"></select>
                 <span asp-validation-for="ComplainTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <a class="btn btn-warning" asp-controller="Home" asp-action="Index">Cancel</a>
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
