@@ -31,6 +31,13 @@ namespace ComplainManagement.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ComplainManagement.API", Version = "v1" });
             });
+
+            services.AddApiVersioning(cfg =>
+            {
+                cfg.DefaultApiVersion = new ApiVersion(1, 0);
+                cfg.AssumeDefaultVersionWhenUnspecified = true;
+                cfg.ReportApiVersions = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
