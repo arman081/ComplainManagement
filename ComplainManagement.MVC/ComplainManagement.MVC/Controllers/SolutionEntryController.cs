@@ -64,10 +64,13 @@ namespace ComplainManagement.MVC.Controllers
                 complainAndSolution.ComplainStatus = "Resolved";
                 _context.Add(complainAndSolution);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                //return LocalRedirect("/ComplainEntry/Index");
+                return RedirectToAction("Index", "ComplainEntry");
             }
             ViewData["ComplainTypeId"] = new SelectList(_context.ComplainTypes, "ComplainTypeId", "ComplainTypeName", complainAndSolution.ComplainTypeId);
             return View(complainAndSolution);
+           
         }
 
         // GET: SolutionEntry/Edit/5
@@ -120,7 +123,8 @@ namespace ComplainManagement.MVC.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return LocalRedirect("/ComplainEntry/Index");
             }
             ViewData["ComplainTypeId"] = new SelectList(_context.ComplainTypes, "ComplainTypeId", "ComplainTypeName", complainAndSolution.ComplainTypeId);
             return View(complainAndSolution);

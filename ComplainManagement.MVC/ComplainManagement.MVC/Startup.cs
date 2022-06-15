@@ -27,6 +27,10 @@ namespace ComplainManagement.MVC
         {
             services.AddDbContext<ApplicationDbContext>(
         options => options.UseSqlServer("name=ConnectionStrings:ComplainConnectionString"));
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(1000);//You can set Time   
+            });
             services.AddControllersWithViews();
 
         }
@@ -50,7 +54,7 @@ namespace ComplainManagement.MVC
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
