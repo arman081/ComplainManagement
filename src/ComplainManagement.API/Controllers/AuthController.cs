@@ -19,6 +19,17 @@ namespace ComplainManagement.API.Controllers
         public async Task<IActionResult> Registration([FromBody] RegisterVm registerVm)
         {
 
+
+            return null;
+        }
+
+        [ApiVersion("1.1")]
+        [HttpPost("api/auth/login")]
+
+        public async Task<IActionResult> Login([FromBody] LoginVm loginVm)
+        {
+
+
             return null;
         }
     }
