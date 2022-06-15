@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <h1>Complain List</h1>
 <div>
     <div class="form-group row">
@@ -79,3 +79,24 @@
 }
     </tbody>
 </table>
+<script>
+    $("#btnFilter").click(function () {
+        debugger;
+        var ComplainFilter = $("#ComplainFilter").val();
+        $.ajax({
+            url: 'ComplainEntry/Filter',
+            dataType: 'text',
+            type: 'post',
+            data: JSON.stringify({ ComplainId: ComplainFilter }),            
+            contentType: "application/json",
+            success: function (data, textStatus, jQxhr) {
+                $('#response pre').html(data);
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+        });
+    
+
+</script>

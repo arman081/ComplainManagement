@@ -23,13 +23,27 @@ namespace ComplainManagement.MVC.Controllers
         // GET: ComplainEntry
         public async Task<IActionResult> Index()
         {
-           var UserName = HttpContext.Session.GetString("UserName");
-            if (UserName==null)
+            var UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
             {
                 return RedirectToAction("Index", "Login");
             }
             ViewData["ComplainTypeId"] = new SelectList(_context.ComplainTypes, "ComplainTypeId", "ComplainTypeName");
             var applicationDbContext = _context.ComplainAndSolutions.Include(c => c.ComplainType);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        [HttpPost("ComplainEntry/Filter")]
+        public async Task<IActionResult> Filter(string ComplainId)
+        {
+            var UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            ViewData["ComplainTypeId"] = new SelectList(_context.ComplainTypes, "ComplainTypeId", "ComplainTypeName");
+            var applicationDbContext = _context.ComplainAndSolutions.Where(c => c.ComplainTypeId == int.Parse(ComplainId)).Include(c => c.ComplainType);
+
             return View(await applicationDbContext.ToListAsync());
         }
 
