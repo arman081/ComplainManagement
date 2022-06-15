@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  complainmanagement.api:
+    image: ${DOCKER_REGISTRY-}complainmanagementapi
+    build:
+      context: .
+      dockerfile: ComplainManagement.API/Dockerfile

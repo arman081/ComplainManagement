@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplainManagement.API", "ComplainManagement.API\ComplainManagement.API.csproj", "{E143F18F-1C73-4142-A900-80DD62AFD9FD}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4047C444-D665-41DE-86E4-BCB16F8200D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplainManagement.Domain", "ComplainManagement.Domain\ComplainManagement.Domain.csproj", "{D55BC690-E0EB-4C6A-99E7-DA776260348E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E143F18F-1C73-4142-A900-80DD62AFD9FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E143F18F-1C73-4142-A900-80DD62AFD9FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E143F18F-1C73-4142-A900-80DD62AFD9FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4047C444-D665-41DE-86E4-BCB16F8200D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4047C444-D665-41DE-86E4-BCB16F8200D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4047C444-D665-41DE-86E4-BCB16F8200D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4047C444-D665-41DE-86E4-BCB16F8200D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D55BC690-E0EB-4C6A-99E7-DA776260348E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55BC690-E0EB-4C6A-99E7-DA776260348E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55BC690-E0EB-4C6A-99E7-DA776260348E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55BC690-E0EB-4C6A-99E7-DA776260348E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
