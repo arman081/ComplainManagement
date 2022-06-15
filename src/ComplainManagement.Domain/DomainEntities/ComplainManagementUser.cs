@@ -17,6 +17,10 @@ namespace ComplainManagement.Domain.DomainEntities
         [Required]
         [MaxLength(200)]
         public string UserEmail { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        public string UserType { get; set; } = "Admin";
         [Required]
         public bool IsActive { get; set; }
 

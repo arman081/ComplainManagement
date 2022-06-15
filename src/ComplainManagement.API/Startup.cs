@@ -12,6 +12,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using ComplainManagement.API.Persistence;
+using Microsoft.EntityFrameworkCore;
+using ComplainManagement.Domain.DomainEntities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 
 namespace ComplainManagement.API
 {
@@ -44,6 +52,39 @@ namespace ComplainManagement.API
                 cfg.AssumeDefaultVersionWhenUnspecified = true;
                 cfg.ReportApiVersions = true;
             });
+            services.AddDbContext<ComplainDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<ComplainManagementUser, IdentityRole>()
+                    .AddEntityFrameworkStores<ComplainDbContext>();
+
+            services.AddCors(cfg =>
+            {
+                cfg.AddPolicy("AllowAll", all =>
+                {
+                    all.AllowAnyHeader()
+                        .AllowAnyMethod()                        
+                        .AllowAnyOrigin();
+                });
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })// Adding Jwt Bearer
+.AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = Configuration["Tokens:Issuer"],
+        ValidAudience = Configuration["Tokens:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+    };
+});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +99,10 @@ namespace ComplainManagement.API
 
             app.UseRouting();
 
+            // Authentication & Authorization
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
